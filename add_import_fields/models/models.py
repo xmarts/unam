@@ -23,7 +23,7 @@ class AddFields(models.Model):
 			sql = "select sum(ail.price_total) from account_invoice_line ail inner join account_invoice ai on ai.id=ail.invoice_id where ai.state='draft' and ail.account_id='"+str(l.id)+"'"
 			cr.execute(sql)
 			m = cr.fetchone()
-			if m==None:
+			if m is None:
 				m=(0,)
 			comp = comp + max(m)
 		self.imcomprometido = comp
