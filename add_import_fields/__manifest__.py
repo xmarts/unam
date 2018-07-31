@@ -15,7 +15,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['base','account_budget'],
+    'depends': ['base','account_budget','account_accountant','account_invoicing'],
 
     'data': [
         'views/views.xml',
