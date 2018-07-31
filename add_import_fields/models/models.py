@@ -24,6 +24,6 @@ class AddFields(models.Model):
 			cr.execute(sql)
 			m = cr.fetchone()
 			if m is None:
-				m=(0,)
+				m=0
 			comp = comp + max(m)
 		self.imcomprometido = comp
