@@ -20,7 +20,7 @@ class AddFields(models.Model):
 		comp=0
 		for l in self.general_budget_id.account_ids:
 			cr = self.env.cr
-			sql = "select COALESCE(sum(ail.price_total),0) from account_invoice_line ail inner join account_invoice ai on ai.id=ail.invoice_id where ai.state='draft' and ail.account_id='"+str(l.id)+"'"
+			sql = "select COALESCE(sum(ail.price_total),0) from account_invoice_line ail inner join account_invoice ai on ai.id=ail.invoice_id where ai.state='draft' and ai.type='out_invoice' and ail.account_id='"+str(l.id)+"'"
 			cr.execute(sql)
 			m = cr.fetchone()
 			if m is None:
