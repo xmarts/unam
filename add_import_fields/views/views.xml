@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="add_extra_fields_budget_inherit_form" model="ir.ui.view">
+      <field name="name">add.extra.fields.budget.inherit.form</field>
+      <field name="model">crossovered.budget</field>
+      <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='crossovered_budget_line']/tree[1]/field[@name='planned_amount']" position="after">
+          <field name="imejercido" sum="Importe Ejercido"/>
+          <field name="imcomprometido" sum="Importe Comprometido"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>
