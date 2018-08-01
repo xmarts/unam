@@ -5,20 +5,22 @@ from odoo import models, fields, api
 class AddFields(models.Model):
 	_inherit = "crossovered.budget.lines"
 
-	imejercido = fields.Float(string="Importe Ejercido",compute="_valor")
-	imcomprometido = fields.Float(string="Importe Comprometido",compute="_valorr")
+	imejercido = fields.Float(string="Importe Ejercido",compute="amejer")
+	imcomprometido = fields.Float(string="Importe Comprometido",compute="sum_flines")
 
 
-
+	@api.multi
 	@api.depends('planned_amount','practical_amount')
-	def _valor(self):
+	def amejer(self):
 		if(self.practical_amount<=0):
 			self.imejercido = self.planned_amount + self.practical_amount
 		else:
 			self.imejercido = self.planned_amount - self.practical_amount
 
+
+	@api.multi
 	@api.depends('general_budget_id','imcomprometido')
-	def _valorr(self):
+	def sum_flines(self):
 		comp=0
 		for l in self.general_budget_id.account_ids:
 			cr = self.env.cr
