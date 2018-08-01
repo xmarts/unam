@@ -8,7 +8,6 @@ class AddFields(models.Model):
 	imejercido = fields.Float(string="Importe Ejercido",compute="amejer")
 	imcomprometido = fields.Float(string="Importe Comprometido",compute="sum_flines")
 
-
 	@api.depends('planned_amount','practical_amount')
 	def amejer(self):
 		if(self.practical_amount<=0):
@@ -26,6 +25,6 @@ class AddFields(models.Model):
 			cr.execute(sql)
 			m = cr.fetchone()
 			if m is None:
-				m=(0,)
+				m=0
 			comp = comp + max(m)
 		self.imcomprometido = comp
