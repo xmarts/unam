@@ -12,7 +12,10 @@ class AddFields(models.Model):
 	@api.one
 	@api.depends('planned_amount','practical_amount')
 	def _valor(self):
-		self.imejercido = (self.planned_amount)-(self.practical_amount)
+		if(self.practical_amount <= 0):
+			self.imejercido = (self.planned_amount)+(self.practical_amount)
+		else:
+			self.imejercido = (self.planned_amount)-(self.practical_amount)
 		
 	@api.one
 	@api.depends('general_budget_id','imcomprometido')
