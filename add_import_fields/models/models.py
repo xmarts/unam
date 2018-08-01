@@ -17,7 +17,7 @@ class AddFields(models.Model):
 		else:
 			self.imejercido = (self.planned_amount)-(self.practical_amount)
 		
-	@api.one
+
 	@api.depends('general_budget_id','imcomprometido')
 	def _valorr(self):
 		comp=0
