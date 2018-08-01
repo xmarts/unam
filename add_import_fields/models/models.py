@@ -23,7 +23,7 @@ class AddFields(models.Model):
 		comp=0
 		for l in self.general_budget_id.account_ids:
 			cr = self.env.cr
-			sql = "select COALESCE(sum(pol.price_total),0) from purchase_order_line pol inner join purchase_order po on po.id=pol.order_id where po.date_order>='2018-01-01' and po.date_order<='2018-12-31' and (po.state='draft' or po.state='sent' or po.state='to approve') and pol.account_analytic_id='"+str(l.id)+"'"
+			sql = "select COALESCE(sum(pol.price_total),0) from purchase_order_line pol inner join purchase_order po on po.id=pol.order_id where po.date_order>='"+str(self.date_from)+"' and po.date_order<='"+str(self.date_to)+"' and (po.state='draft' or po.state='sent' or po.state='to approve') and pol.account_analytic_id='"+str(l.id)+"'"
 			cr.execute(sql)
 			m = cr.fetchone()
 			if m is None:
